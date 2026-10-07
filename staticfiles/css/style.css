@@ -1,33 +1,136 @@
-/* =========================
-   Main Page
-   ========================= */
+/* ================================
+   COLORFUL ANIMATED BACKGROUND
+================================ */
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     min-height: 100vh;
     font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #f8fafc);
     color: #1e293b;
+
+    /* Animated colorful background */
+    background: linear-gradient(
+        -45deg,
+        #6a11cb,
+        #2575fc,
+        #00c6ff,
+        #7f00ff,
+        #ff4b91
+    );
+
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
 }
 
 
-/* =========================
-   Todo Container
-   ========================= */
+/* Moving gradient */
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* ================================
+   FLOATING GLOWING BACKGROUND
+================================ */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    z-index: -1;
+    animation: floatingBlob 8s ease-in-out infinite alternate;
+}
+
+body::before {
+    background: #00ffff;
+    top: -80px;
+    left: -80px;
+}
+
+body::after {
+    background: #ff00aa;
+    bottom: -100px;
+    right: -80px;
+    animation-delay: 2s;
+}
+
+@keyframes floatingBlob {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px, 50px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-40px, 100px) scale(0.9);
+    }
+}
+
+
+/* ================================
+   MAIN TODO CONTAINER
+================================ */
 
 .container {
     max-width: 850px;
-    margin: 60px auto;
-    padding: 35px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+    margin: 70px auto;
+    padding: 40px;
+
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+
+    animation: containerAppear 0.8s ease;
+}
+
+@keyframes containerAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 
-/* =========================
-   Page Header
-   ========================= */
+/* ================================
+   HEADER
+================================ */
 
 .page-header {
     margin-top: 0;
@@ -36,21 +139,39 @@ body {
 }
 
 .page-header h1 {
-    font-size: 38px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #1e293b;
+    margin-bottom: 8px;
+
+    font-size: 42px;
+    font-weight: 800;
+
+    color: white;
+
+    text-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.25);
+
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .page-header p {
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 16px;
 }
 
 
-/* =========================
-   Add Todo Section
-   ========================= */
+/* ================================
+   ADD TODO FORM
+================================ */
 
 .todo-form {
     display: flex;
@@ -60,126 +181,211 @@ body {
 
 .todo-form input {
     flex: 1;
-    padding: 14px 18px;
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
+
+    padding: 16px 20px;
+
+    border: 2px solid transparent;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.9);
+
     font-size: 16px;
     outline: none;
-    transition: 0.3s;
+
+    transition: all 0.3s ease;
 }
 
 .todo-form input:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    background: white;
+
+    border-color: #00d4ff;
+
+    box-shadow:
+        0 0 0 4px rgba(0, 212, 255, 0.2),
+        0 8px 25px rgba(0, 0, 0, 0.15);
+
+    transform: translateY(-2px);
 }
 
+
+/* ================================
+   ADD BUTTON
+================================ */
+
 .todo-form button {
-    padding: 14px 25px;
+    padding: 15px 28px;
+
     border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #ff512f,
+        #dd2476
+    );
+
     color: white;
+
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
+
     cursor: pointer;
-    transition: 0.3s;
+
+    box-shadow:
+        0 8px 20px rgba(221, 36, 118, 0.35);
+
+    transition: all 0.3s ease;
 }
 
 .todo-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 12px 30px rgba(221, 36, 118, 0.5);
+}
+
+.todo-form button:active {
+    transform: scale(0.96);
 }
 
 
-/* =========================
-   Todo List
-   ========================= */
+/* ================================
+   TODO LIST
+================================ */
 
 .todo-list {
     margin-top: 20px;
 }
 
+
+/* ================================
+   TODO ITEM
+================================ */
+
 .todo-item {
     display: flex;
     align-items: center;
+
     padding: 18px 20px;
-    margin-bottom: 12px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    transition: 0.25s;
+    margin-bottom: 14px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    border-radius: 15px;
+
+    border-left: 5px solid #7c3aed;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+
+    transition: all 0.3s ease;
+
+    animation: todoAppear 0.5s ease;
+}
+
+@keyframes todoAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .todo-item:hover {
-    transform: translateY(-2px);
-    background: #ffffff;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    transform: translateX(6px) translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.18);
+
+    border-left-color: #ec4899;
 }
 
 
-/* =========================
-   Checkbox
-   ========================= */
+/* ================================
+   CHECKBOX
+================================ */
 
 .todo-status-checkbox {
     cursor: pointer;
-    margin-right: 14px;
-    width: 18px;
-    height: 18px;
-    accent-color: #6366f1;
+
+    width: 19px;
+    height: 19px;
+
+    margin-right: 15px;
+
+    accent-color: #7c3aed;
 }
 
 
-/* =========================
-   Todo Text
-   ========================= */
+/* ================================
+   TODO TEXT
+================================ */
 
 .todo-text {
     flex: 1;
+
     font-size: 17px;
+    font-weight: 500;
+
     color: #334155;
 }
 
 .todo-complete {
     text-decoration: line-through;
+
     color: #94a3b8;
 }
 
 
-/* =========================
-   Delete Button
-   ========================= */
+/* ================================
+   DELETE ICON
+================================ */
 
 .fa-trash-alt {
     color: #ef4444;
+
     float: right;
+
     cursor: pointer;
+
     font-size: 18px;
-    padding: 8px;
-    border-radius: 8px;
-    transition: 0.25s;
+
+    padding: 9px;
+
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
 }
 
 .fa-trash-alt:hover {
-    color: #ffffff;
+    color: white;
+
     background: #ef4444;
-    transform: scale(1.08);
+
+    transform: rotate(12deg) scale(1.15);
+
+    box-shadow:
+        0 5px 15px rgba(239, 68, 68, 0.4);
 }
 
 
-/* =========================
-   Responsive Design
-   ========================= */
+/* ================================
+   MOBILE
+================================ */
 
 @media (max-width: 600px) {
 
     .container {
-        margin: 20px;
+        margin: 25px 15px;
         padding: 25px 18px;
     }
 
     .page-header h1 {
-        font-size: 30px;
+        font-size: 32px;
     }
 
     .todo-form {
