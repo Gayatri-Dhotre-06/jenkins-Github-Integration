@@ -1,18 +1,196 @@
-.page-header {
-  margin-top: 30px;
+/* =========================
+   Main Page
+   ========================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1e293b;
 }
 
-.fa-trash-alt {
-  color: red;
-  float: right;
-  cursor: pointer;
+
+/* =========================
+   Todo Container
+   ========================= */
+
+.container {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =========================
+   Page Header
+   ========================= */
+
+.page-header {
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+.page-header p {
+    color: #64748b;
+    font-size: 16px;
+}
+
+
+/* =========================
+   Add Todo Section
+   ========================= */
+
+.todo-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.todo-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.todo-form input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.todo-form button {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.todo-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+
+/* =========================
+   Todo List
+   ========================= */
+
+.todo-list {
+    margin-top: 20px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    transition: 0.25s;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================
+   Checkbox
+   ========================= */
+
+.todo-status-checkbox {
+    cursor: pointer;
+    margin-right: 14px;
+    width: 18px;
+    height: 18px;
+    accent-color: #6366f1;
+}
+
+
+/* =========================
+   Todo Text
+   ========================= */
+
+.todo-text {
+    flex: 1;
+    font-size: 17px;
+    color: #334155;
 }
 
 .todo-complete {
-  text-decoration: line-through;
+    text-decoration: line-through;
+    color: #94a3b8;
 }
 
-.todo-status-checkbox {
-  cursor: pointer;
-  margin-right: 10px;
+
+/* =========================
+   Delete Button
+   ========================= */
+
+.fa-trash-alt {
+    color: #ef4444;
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: 0.25s;
+}
+
+.fa-trash-alt:hover {
+    color: #ffffff;
+    background: #ef4444;
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   Responsive Design
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        margin: 20px;
+        padding: 25px 18px;
+    }
+
+    .page-header h1 {
+        font-size: 30px;
+    }
+
+    .todo-form {
+        flex-direction: column;
+    }
+
+    .todo-form button {
+        width: 100%;
+    }
+
+    .todo-item {
+        padding: 15px;
+    }
 }
